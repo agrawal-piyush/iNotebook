@@ -1,3 +1,4 @@
+var fetchuser = require('../middleware/fetchuser')
 const express = require('express')
 const router = express.Router()
 const {body, validationResult } = require('express-validator')
@@ -85,6 +86,22 @@ try {
 } catch (error) {
   console.error(error.message);
   res.status(500).send("Internal error occured")
+}
+})
+
+
+/////getting  user  details using POST"/api/auth"  No login required
+
+router.post('/getuser',fetchuser ,async (req,res)=>{
+
+try {
+  userId =req.user.id
+  const user = await User.findById(userId).select("-password")
+  res.send(user)
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal error occured")
+  
 }
 })
 module.exports = router
