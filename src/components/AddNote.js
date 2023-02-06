@@ -5,7 +5,7 @@ export default function AddNote() {
     const context = useContext(noteContext)
     const {addNote} = context
   const [note,setNote] =useState({title:"",description:"",tag:""})
-    const onChange=(e)=>{
+    const onChange=(e)=>{    
         setNote({...note,[e.target.name]:e.target.value})
 
   }
@@ -45,14 +45,22 @@ export default function AddNote() {
             onChange={onChange}
           />
         </div>
-        <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={onChange} />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label" >
+            Tag
           </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tag"
+            name="tag"
+            defaultValue="Default"
+            onChange={onChange}
+          />
         </div>
+       
         <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Submit
+          Add Note
         </button>
       </form>
             
