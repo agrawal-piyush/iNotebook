@@ -6,8 +6,7 @@ export default function Navbar() {
   
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark   bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark   bg-dark">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">iNOTEbook</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,11 +19,16 @@ export default function Navbar() {
         </li>
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
+        
         </li>
         </ul>
-    </div>
+      </div>
+        <form className="form-inline">
+    <Link  role="button" className="btn btn-primary mx-1" to="/login">Login </Link>
+    <Link  role="button" className="btn btn-primary mx-1" to="/signup">SignUp </Link>
+  </form>
   </div>
-</nav>
-    </>
+</nav>    
+    
   )
 }

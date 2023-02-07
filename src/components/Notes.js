@@ -20,7 +20,6 @@ export default function Notes() {
   const onChange=(e)=>{
 
     setNote({...note,[e.target.name]:e.target.value})
-    e.preventDefault()
   }
   
   const handleClick=(e)=>{
@@ -122,7 +121,7 @@ export default function Notes() {
               >
                 Close
               </button>
-              <button type="button" onClick={handleClick} className="btn btn-primary">
+              <button  disabled ={note.etitle.length<5 || note.edescription.length<5}type="button" onClick={handleClick} className="btn btn-primary">
                 Update Note
               </button>
             </div>
@@ -130,7 +129,9 @@ export default function Notes() {
         </div>
       </div>
       <h1> Your Notes</h1>
-      <div className="row my-3">
+      <div className=" row my-3">
+        <div className="container mx-2">{notes.length ===0 && "No notes to Display"}</div>
+        
         {notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} note={note} />

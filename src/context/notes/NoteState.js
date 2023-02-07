@@ -10,7 +10,7 @@ const host = "http://localhost:5000"
   //get notes
   //add notes 
   const getNotes=async()=>{
-    console.log("fetching")
+    //console.log("fetching")
     //todo api call
       //API CALL
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -24,7 +24,7 @@ const host = "http://localhost:5000"
         
       });
       const json = await response.json()
-    console.log(json)
+   // console.log(json)
     setNotes(json)
   }
   
@@ -47,7 +47,7 @@ const host = "http://localhost:5000"
   }
     //delete note
   const deleteNote= async(id)=>{
-    console.log("deleting the node with id"+ id)
+    //console.log("deleting the node with id"+ id)
     //API CALL
   const response =  await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
@@ -60,9 +60,9 @@ const host = "http://localhost:5000"
       
     });
     const json = await response.json()
-  console.log(json)
+  
 
-    console.log("deleting the node with id"+ id)
+    //console.log("deleting the node with id"+ id)
     const newNotes = notes.filter((note)=>{ return note._id!==id})
     setNotes(newNotes)
   }
