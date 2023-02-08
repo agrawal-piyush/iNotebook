@@ -1,10 +1,15 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Navbar(props) {
+  let nav = useNavigate()
+  const handleLogout=()=>{
+    localStorage.removeItem('token')
+    props.showAlert("Logout Successfully","success")
+    nav('/login')
+  }  
   let location =useLocation()
   
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark   bg-dark">
   <div className="container-fluid">
@@ -23,10 +28,10 @@ export default function Navbar() {
         </li>
         </ul>
       </div>
-        <form className="form-inline">
+        {!localStorage.getItem('token')?<form className="form-inline">
     <Link  role="button" className="btn btn-primary mx-1" to="/login">Login </Link>
     <Link  role="button" className="btn btn-primary mx-1" to="/signup">SignUp </Link>
-  </form>
+  </form> :<button className="btn btn-primary"onClick={handleLogout}>Logout</button>}
   </div>
 </nav>    
     

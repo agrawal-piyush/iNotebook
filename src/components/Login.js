@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
-export default function Login() {
+export default function Login(props) {
   const [Credentials,setCredentials]=useState({email:"",password:""})
  let navigate =useNavigate()
 
@@ -18,17 +18,18 @@ export default function Login() {
     
     })
     const json = await response.json()
-    console.log(json)
     if(json.success){
         setCredentials({email:"",password:""})
 
         //redirect
-        localStorage.setItem('token',json.authtoken)
-
+        
+        localStorage.setItem('token',json.authToken)
+        //console.log(localStorage)
         navigate("/")
+        props.showAlert("Login Successfully","success")
     }
     else{
-        alert("invalid credentials")
+      props.showAlert(json.error,"danger")
     }
     
 }
@@ -40,7 +41,8 @@ export default function Login() {
   }
   
     return (
-    <div>
+    <div className="mt-3">
+      <h2 className="my-3"> Login to continue to INotebook</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
